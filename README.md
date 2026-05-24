@@ -29,6 +29,33 @@ A RESTful API server built using Node.js and Express.js that performs CRUD opera
 
 All endpoints were tested successfully using Postman.
 
+### Get all posts
+
+![GET Posts](./screenshots/get-posts.png)
+
+### POST Request
+![POST Request](./screenshots/post-request.png)
+
+### GET Single Post
+
+![GET Single Post](./screenshots/get-single-post.png)
+
+### PUT Request
+
+![PUT Request](./screenshots/put-request.png)
+
+### DELETE Request
+
+![DELETE Request](./screenshots/delete-request.png)
+
+### Login Route
+
+![Login Route](./screenshots/login-route.png)
+
+### Middleware Logs
+
+![Middleware Logs](./screenshots/middleware-logs.png)
+
 ---
 
 ## Live Demo 
