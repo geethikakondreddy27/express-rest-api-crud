@@ -6,7 +6,7 @@ app.use((req , res, next)=>{
     console.log(`[${req.method}] ${req.url} - ${currentTime}`);
     next();
 });
-const PORT = 5000;
+const PORT = process.env.PORT  || 5000;
 let blogPosts = [];
 app.get("/",(req,res)=>{
     res.json({message:"Server is running"});
