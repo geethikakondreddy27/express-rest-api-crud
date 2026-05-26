@@ -7,7 +7,7 @@ app.use((req , res, next)=>{
     next();
 });
 const PORT = process.env.PORT  || 5000;
-let blogPosts = [];
+let blogPosts = []; 
 app.get("/",(req,res)=>{
     res.json({message:"Server is running"});
 });
@@ -19,11 +19,21 @@ app.get("/posts",(req,res)=>{
 app.get("/posts/:id",(req,res)=>{
     const postId = parseInt(req.params.id);
     const foundPost  = blogPosts.find(post => post.id === postId);
+    if(!foundPost){
+        return res.status(404).json({
+            message:"Post not found"
+        });
+    }
     res.json(foundPost);
 });
 
 app.post("/posts",(req,res)=>{
    const newPost = req.body;
+   if(!newPost.id || !newPost.title){
+    return res.status(400).json({
+        message:"ID and title are required"
+    });
+   }
     blogPosts.push(newPost);
     res.json({
         message:"Post added successfully",
