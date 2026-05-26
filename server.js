@@ -34,6 +34,14 @@ app.post("/posts",(req,res)=>{
         message:"ID and title are required"
     });
    }
+   const existingPost = blogPosts.find(
+    post => post.id === newPost.id 
+   );
+   if(existingPost){
+    return res.status(400).json({
+        message:"Post ID already exists"
+    });   
+   }
     blogPosts.push(newPost);
     res.json({
         message:"Post added successfully",
@@ -44,6 +52,18 @@ app.post("/posts",(req,res)=>{
 app.put("/posts/:id",(req,res)=>{
    const postId = parseInt(req.params.id);
    const updatedPost = req.body;
+   if(!updatedPost.id || !updatedPost.title){
+    return res.status(400).json({
+        message:"ID and title are required"
+    });
+   }
+
+   const foundPost = blogPosts.find(post =>post.id === postId);
+   if(!foundPost){
+    return res.status(404).json({
+        message:"Post not found"
+    });
+   }
    blogPosts = blogPosts.map(post=> post.id === postId? updatedPost:post);
    res.json({
     message:"Post updated successfully", 
@@ -53,6 +73,12 @@ app.put("/posts/:id",(req,res)=>{
 
 app.delete("/posts/:id",(req,res)=>{
     const postId = parseInt(req.params.id);
+    const foundPost = blogPosts.find(post => post.id === postId);
+    if(!foundPost){
+        return res.status(404).json({
+            message:"Post not found"
+        });
+    }
     blogPosts=blogPosts.filter(post=>post.id !== postId);
     res.json({
         message:"Post deleted successfully",
@@ -62,6 +88,11 @@ app.delete("/posts/:id",(req,res)=>{
 
 app.post("/login",(req,res)=>{
     const {username , password} = req.body;
+    if(!username || !password){
+        return res.status(400).json({
+            message:"Username and password are required"
+        });
+    }
     res.json({
         message:"Login successfull",
         token:"mock-jwt-token-12345"
