@@ -25,6 +25,18 @@ A RESTful API server built using Node.js and Express.js that performs CRUD opera
 
 ---
 
+
+## API Improvements
+
+- Added validation for incoming request bodies
+- Prevented duplicate blog post IDs
+- Added validation for login credentials
+- Implemented proper 404 handling for missing resources
+- Improved API robustness with defensive programming practices
+
+---
+
+
 ## API Testing
 
 All endpoints were tested successfully using Postman.
